@@ -3,6 +3,7 @@ Utilities for the analysis.
 '''
 import h5flow
 import h5py
+import numpy as np
 
 def list_hdf5_contents(file_path):
     with h5py.File(file_path, 'r') as file:
@@ -17,17 +18,28 @@ def Read_Flow(root_path: str, filename: str):
   h5flow_data = h5flow.data.H5FlowDataManager('/'.join([root_path, filename]), 'r')
   return h5flow_data
 
-def get_data(h5flow_data, evid: int):
+def get_Eventdata(h5flow_data, evid: int):
     calib_data = h5flow_data['charge/events', 'charge/calib_prompt_hits', evid]
     return calib_data
 
-def drawEvent(evtData):
+def Eventdata2Array(evtdata, evtid: int):
+    x = evtdata.data['x'].flatten()
+    y = evtdata.data['y'].flatten()
+    z = evtdata.data['z'].flatten()
+    Nhits = len(x)
+    charge = evtdata.data['Q'].flatten()
+    dtype = [('evtID', 'i4'), ('x', 'f4', (Nhits,)), ('y', 'f4', (Nhits,)), ('z', 'f4', (Nhits,)), ('Q', 'f4', (Nhits,))]
+    data = [(evtid, x, y, z, charge)]
+    arr = np.array(data, dtype=dtype)
+    return arr
+
+def drawEvent(arr_evtData):
     import matplotlib.pyplot as plt
     plt.ioff()
-    x = evtData.data['x'].flatten()
-    y = evtData.data['y'].flatten()
-    z = evtData.data['z'].flatten()
-    charge = evtData.data['Q'].flatten()
+    x = arr_evtData['x'].flatten()
+    y = arr_evtData['y'].flatten()
+    z = arr_evtData['z'].flatten()
+    charge = arr_evtData['Q'].flatten()
 
     fig, ax = plt.subplots(1,3,figsize=(5*3,5))
     # xy projection

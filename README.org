@@ -13,4 +13,4 @@ The SpatialClustering using DBSCAN is not efficient yet.
 Since the track selection is not efficient yet, one can only get the event number and the name of the input file to be
 used in the interactive event display. \\ 
 - The output of the interactive event display is then used as the input of the tests/to_trk_tree.py in order to convert the hdf5 file to ROOT file.\\
-- The script test/SingleTrackAnalysis.C uses that ROOT file to plot histograms and Profile using ROOT.
+- The script tests/SingleTrackAnalysis.C uses that ROOT file to plot histograms and Profile using ROOT.

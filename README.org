@@ -1,5 +1,11 @@
+
 * 2x2_analysis
 
+* Note:
+The setup.py file was not tested yet. It may not work properly.\\
+The SpatialClustering using DBSCAN is not efficient yet.
+
+* Goal
 [[./dataAnalysisSoftware.png]]
 
 * Current status:

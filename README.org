@@ -1,2 +1,8 @@
-# 2x2_analysis
+* 2x2_analysis
+
 [[./dataAnalysisSoftware.png]]
+
+* Current status:
+- The testSelection.py script in the folder tests/ can be run. This script generates the displays of the selected events.\\
+Since the track selection is not efficient yet, one can only get the event number and the name of the input file to be
+used in the interactive event display. \\ 
